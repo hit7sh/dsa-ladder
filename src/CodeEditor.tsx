@@ -59,7 +59,7 @@ const CodeEditor = () => {
     return (
         <div className="">
             <div className="flex flex-row-reverse pr-4">
-                <Button variant="secondary">Run ▶️</Button>
+                <Button onClick={() => alert('Backend work is in Progress 🚧')} variant="secondary">Run ▶️</Button>
                 <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>
