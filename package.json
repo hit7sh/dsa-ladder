@@ -12,6 +12,8 @@
   "dependencies": {
     "@chakra-ui/react": "^3.1.0",
     "@emotion/react": "^11.13.3",
+    "@iconscout/react-unicons": "^2.0.2",
+    "@iconscout/react-unicons-solid": "^1.0.2",
     "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",

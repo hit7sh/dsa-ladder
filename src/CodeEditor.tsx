@@ -47,6 +47,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import { Button } from './components/ui/button';
 import ThemeSelector from './ThemeSelector';
 
+import { UilPlay } from '@iconscout/react-unicons'
 
 const CodeEditor = () => {
     const [code, setCode] = useState<string | undefined>('');
@@ -58,8 +59,8 @@ const CodeEditor = () => {
 
     return (
         <div className="">
-            <div className="flex flex-row-reverse pr-4">
-                <Button onClick={() => alert('Backend work is in Progress 🚧')} variant="secondary">Run ▶️</Button>
+            <div className="flex flex-row-reverse justify-between">
+                <Button className="rounded border-solid border-4" onClick={() => alert('Backend work is in Progress 🚧')} variant="secondary">Run <UilPlay /></Button>
                 <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>

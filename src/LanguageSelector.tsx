@@ -6,6 +6,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { UilAngleDown } from '@iconscout/react-unicons'
+
 import { LANGUAGES } from './constants'
 
 interface Props {
@@ -19,7 +21,7 @@ const LanguageSelector = ({ language, onSelect }: Props) => {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="secondary">{language[0].toUpperCase() + language.slice(1)} 🔽</Button>
+                    <Button variant="secondary">{language[0].toUpperCase() + language.slice(1)} <UilAngleDown /></Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>
