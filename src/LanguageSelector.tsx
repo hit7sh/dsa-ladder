@@ -6,7 +6,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { UilAngleDown } from '@iconscout/react-unicons'
+import { TiArrowSortedDown } from "react-icons/ti";
 
 import { LANGUAGES } from './constants'
 
@@ -21,7 +21,7 @@ const LanguageSelector = ({ language, onSelect }: Props) => {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="secondary">{language[0].toUpperCase() + language.slice(1)} <UilAngleDown /></Button>
+                    <Button variant="secondary">{language[0].toUpperCase() + language.slice(1)} <TiArrowSortedDown /></Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>

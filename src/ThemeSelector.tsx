@@ -7,13 +7,14 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { EDITOR_THEMES } from './constants'
-import { UilAngleDown } from '@iconscout/react-unicons'
+import { TiArrowSortedDown } from "react-icons/ti";
+
 
 const ThemeSelector = ({ setTheme }: { setTheme: any }) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="secondary">Change Theme <UilAngleDown /></Button>
+                <Button variant="secondary">Change Theme <TiArrowSortedDown /></Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuGroup>
