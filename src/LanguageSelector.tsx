@@ -19,13 +19,15 @@ const LanguageSelector = ({ language, onSelect }: Props) => {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="secondary">{language} 🔽</Button>
+                    <Button variant="secondary">{language[0].toUpperCase() + language.slice(1)} 🔽</Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>
                         {LANGUAGES.map((lang) => (
                             <DropdownMenuItem key={lang} onClick={() => onSelect(lang)}>
-                                <span>{lang}</span>
+                                {
+                                    lang === 'c_cpp' ? <span>C++</span> : <span>{lang[0].toUpperCase() + lang.slice(1)}</span>
+                                }
                             </DropdownMenuItem>
                         ))}
                     </DropdownMenuGroup>
