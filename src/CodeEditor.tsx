@@ -51,7 +51,7 @@ import ThemeSelector from './ThemeSelector';
 const CodeEditor = () => {
     const [code, setCode] = useState<string | undefined>('');
     const [language, setLanguage] = useState('c_cpp');
-    const [theme, setTheme] = useState('monokai');
+    const [theme, setTheme] = useState('cobalt');
     const onSelect = (language: string) => {
         setLanguage(language);
     };
@@ -59,7 +59,7 @@ const CodeEditor = () => {
     return (
         <div className="">
             <div className="flex flex-row-reverse pr-4">
-                <Button variant="secondary">Run▶️</Button>
+                <Button variant="secondary">Run ▶️</Button>
                 <LanguageSelector language={language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>

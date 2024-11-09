@@ -19,7 +19,7 @@ const LanguageSelector = ({ language, onSelect }: Props) => {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="secondary">{language}🔽</Button>
+                    <Button variant="secondary">{language} 🔽</Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>

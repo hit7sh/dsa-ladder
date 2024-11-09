@@ -12,7 +12,7 @@ const ThemeSelector = ({ setTheme }: { setTheme: any }) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="secondary">Change Theme🔽</Button>
+                <Button variant="secondary">Change Theme 🔽</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuGroup>
