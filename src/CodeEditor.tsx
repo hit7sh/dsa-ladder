@@ -48,25 +48,42 @@ import { Button } from './components/ui/button';
 import ThemeSelector from './ThemeSelector';
 
 import { TiMediaPlay } from "react-icons/ti";
-
+import { BACKEND_BASE_URL } from './constants';
+import axios, { AxiosRequestConfig } from 'axios';
+import Output from './Output';
+const config: AxiosRequestConfig = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer your_token_here'
+    },
+};
 
 const CodeEditor = () => {
     const [code, setCode] = useState<string | undefined>('');
     const [language, setLanguage] = useState('c_cpp');
     const [theme, setTheme] = useState('cobalt');
+    const [output, setOutput] = useState('');
     const onSelect = (language: string) => {
         setLanguage(language);
+    };
+
+    const runCode = async () => {
+        try {
+            const res = await axios.post(`${BACKEND_BASE_URL}/run`, { code }, config);
+            setOutput(res.data.output);
+        } catch (err) {
+        }
     };
 
     return (
         <div className="">
             <div className="flex flex-row-reverse justify-between">
-                <Button className="rounded border-solid border-4" onClick={() => alert('Backend work is in Progress 🚧')} variant="secondary">Run <TiMediaPlay /></Button>
+                <Button className="rounded border-solid border-4" onClick={runCode} variant="secondary">Run <TiMediaPlay /></Button>
                 <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>
             <AceEditor
-                height="95vh"
+                height="70vh"
                 width="100%"
                 mode={language}
                 fontSize="16px"
@@ -83,6 +100,7 @@ const CodeEditor = () => {
                     (value) => setCode(value)
                 }
             />
+            <Output output={output} />
         </div>
     )
 }
