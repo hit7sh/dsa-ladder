@@ -51,6 +51,7 @@ import { TiMediaPlay } from "react-icons/ti";
 import { BACKEND_BASE_URL } from './constants';
 import axios, { AxiosRequestConfig } from 'axios';
 import Output from './Output';
+import CodeErrors from './CodeErrors';
 const config: AxiosRequestConfig = {
     headers: {
         'Content-Type': 'application/json',
@@ -63,6 +64,9 @@ const CodeEditor = () => {
     const [language, setLanguage] = useState('c_cpp');
     const [theme, setTheme] = useState('cobalt');
     const [output, setOutput] = useState('');
+    const [compile_errors, setCompileErrors] = useState('');
+    const [runtime_errors, setRuntimeErrors] = useState('');
+
     const onSelect = (language: string) => {
         setLanguage(language);
     };
@@ -71,6 +75,8 @@ const CodeEditor = () => {
         try {
             const res = await axios.post(`${BACKEND_BASE_URL}/run`, { code }, config);
             setOutput(res.data.output);
+            setCompileErrors(res.data.compile_errors);
+            setRuntimeErrors(res.data.runtime_errors);
         } catch (err) {
         }
     };
@@ -100,7 +106,15 @@ const CodeEditor = () => {
                     (value) => setCode(value)
                 }
             />
-            <Output output={output} />
+            {
+                (compile_errors || runtime_errors) ? (
+                    <CodeErrors
+                        compile_errors={compile_errors}
+                        runtime_errors={runtime_errors}
+                    />) : (
+                    <Output output={output} />
+                )
+            }
         </div>
     )
 }
