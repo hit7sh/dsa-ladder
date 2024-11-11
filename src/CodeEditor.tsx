@@ -124,7 +124,7 @@ const CodeEditor = () => {
                     (value) => setCode(value)
                 }
             />
-            {(<Tabs defaultValue="Input" className="w-[400px]">
+            {(<Tabs defaultValue="Input" className="bg-slate-500 pt-1">
                 <TabsList>
                     <TabsTrigger value="Input">
                         Input
