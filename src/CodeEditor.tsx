@@ -52,6 +52,8 @@ import { BACKEND_BASE_URL } from './constants';
 import axios, { AxiosRequestConfig } from 'axios';
 import Output from './Output';
 import CodeErrors from './CodeErrors';
+import RingLoader from "react-spinners/RingLoader";
+
 const config: AxiosRequestConfig = {
     headers: {
         'Content-Type': 'application/json',
@@ -66,17 +68,19 @@ const CodeEditor = () => {
     const [output, setOutput] = useState('');
     const [compile_errors, setCompileErrors] = useState('');
     const [runtime_errors, setRuntimeErrors] = useState('');
-
+    const [loading, setLoading] = useState(true);
     const onSelect = (language: string) => {
         setLanguage(language);
     };
 
     const runCode = async () => {
         try {
+            setLoading(true);
             const res = await axios.post(`${BACKEND_BASE_URL}/run`, { code }, config);
             setOutput(res.data.output);
             setCompileErrors(res.data.compile_errors);
             setRuntimeErrors(res.data.runtime_errors);
+            setLoading(false);
         } catch (err) {
         }
     };
@@ -84,7 +88,18 @@ const CodeEditor = () => {
     return (
         <div className="">
             <div className="flex flex-row-reverse justify-between">
-                <Button className="rounded border-solid border-4" onClick={runCode} variant="secondary">Run <TiMediaPlay /></Button>
+                <Button className="rounded border-solid border-4" onClick={runCode} variant="secondary">
+                    {!loading && 'Run'}
+                    {!loading ? (<TiMediaPlay />) : (
+                        <RingLoader
+                            color="green"
+                            loading={true}
+                            size={25}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    )}
+                </Button>
                 <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>
