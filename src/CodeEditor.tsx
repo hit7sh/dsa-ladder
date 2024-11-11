@@ -53,6 +53,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import Output from './Output';
 import CodeErrors from './CodeErrors';
 import RingLoader from "react-spinners/RingLoader";
+import Input from './Input';
 
 const config: AxiosRequestConfig = {
     headers: {
@@ -68,6 +69,7 @@ const CodeEditor = () => {
     const [output, setOutput] = useState('');
     const [compile_errors, setCompileErrors] = useState('');
     const [runtime_errors, setRuntimeErrors] = useState('');
+    const [inputText, setInputText] = useState('');
     const [loading, setLoading] = useState(false);
     const onSelect = (language: string) => {
         setLanguage(language);
@@ -76,7 +78,7 @@ const CodeEditor = () => {
     const runCode = async () => {
         try {
             setLoading(true);
-            const res = await axios.post(`${BACKEND_BASE_URL}/run`, { code }, config);
+            const res = await axios.post(`${BACKEND_BASE_URL}/run`, { code, inputText }, config);
             setOutput(res.data.output);
             setCompileErrors(res.data.compile_errors);
             setRuntimeErrors(res.data.runtime_errors);
@@ -121,6 +123,7 @@ const CodeEditor = () => {
                     (value) => setCode(value)
                 }
             />
+            <Input inputText={inputText} setInputText={setInputText} />
             {
                 (compile_errors || runtime_errors) ? (
                     <CodeErrors
