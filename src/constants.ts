@@ -5,7 +5,7 @@ export const LANGUAGES = [
     "python"
 ];
 
-export const BACKEND_BASE_URL = 'http://ubuntu@ec2-13-233-157-204.ap-south-1.compute.amazonaws.com:3000';
+export const BACKEND_BASE_URL = 'https://dsa-ladder.hit7sh.in.net';
 
 export const EDITOR_THEMES = [
     "ambiance",
