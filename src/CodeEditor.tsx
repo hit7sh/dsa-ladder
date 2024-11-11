@@ -54,6 +54,7 @@ import Output from './Output';
 import CodeErrors from './CodeErrors';
 import RingLoader from "react-spinners/RingLoader";
 import Input from './Input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const config: AxiosRequestConfig = {
     headers: {
@@ -123,15 +124,30 @@ const CodeEditor = () => {
                     (value) => setCode(value)
                 }
             />
-            <Input inputText={inputText} setInputText={setInputText} />
+            {(<Tabs defaultValue="Input" className="w-[400px]">
+                <TabsList>
+                    <TabsTrigger value="Input">
+                        Input
+                    </TabsTrigger>
+                    <TabsTrigger value="Output">
+                        Output
+                    </TabsTrigger>
+                </TabsList>
+                <TabsContent value="Input">
+                    <Input inputText={inputText} setInputText={setInputText} />
+                </TabsContent>
+                <TabsContent value="Output">
+                    <Output output={output} />
+                </TabsContent>
+            </Tabs>
+            )}
+
             {
-                (compile_errors || runtime_errors) ? (
+                (compile_errors || runtime_errors) && (
                     <CodeErrors
                         compile_errors={compile_errors}
                         runtime_errors={runtime_errors}
-                    />) : (
-                    <Output output={output} />
-                )
+                    />)
             }
         </div>
     )

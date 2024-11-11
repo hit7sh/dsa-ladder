@@ -4,9 +4,8 @@ const Output = ({ output }: { output: string }) => {
 
     return (
         <>
-            <div className="bg-blue-500 mt-1 pl-2"> OUTPUT </div>
             <div className="bg-blue-200 pl-2" style={{ whiteSpace: "pre-line" }}>
-                {output}
+                {output || '<<No Output>>'}
             </div>
         </>
     )
