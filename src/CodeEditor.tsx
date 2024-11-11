@@ -68,7 +68,7 @@ const CodeEditor = () => {
     const [output, setOutput] = useState('');
     const [compile_errors, setCompileErrors] = useState('');
     const [runtime_errors, setRuntimeErrors] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const onSelect = (language: string) => {
         setLanguage(language);
     };
@@ -88,7 +88,7 @@ const CodeEditor = () => {
     return (
         <div className="">
             <div className="flex flex-row-reverse justify-between">
-                <Button className="rounded border-solid border-4" onClick={runCode} variant="secondary">
+                <Button disabled={loading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
                     {!loading && 'Run'}
                     {!loading ? (<TiMediaPlay />) : (
                         <RingLoader
