@@ -89,7 +89,7 @@ const CodeEditor = () => {
     };
 
     return (
-        <div className="">
+        <div>
             <div className="flex flex-row-reverse justify-between">
                 <Button disabled={loading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
                     {!loading && 'Run'}
@@ -106,49 +106,52 @@ const CodeEditor = () => {
                 <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>
-            <AceEditor
-                height="70vh"
-                width="100%"
-                mode={language}
-                fontSize="16px"
-                defaultValue=""
-                highlightActiveLine={true}
-                theme={theme}
-                setOptions={{
-                    enableLiveAutocompletion: true,
-                    showLineNumbers: true,
-                    tabSize: 2,
-                }}
-                value={code}
-                onChange={
-                    (value) => setCode(value)
-                }
-            />
-            {(<Tabs defaultValue="Input" className="bg-slate-500 pt-1">
-                <TabsList>
-                    <TabsTrigger value="Input">
-                        Input
-                    </TabsTrigger>
-                    <TabsTrigger value="Output">
-                        Output
-                    </TabsTrigger>
-                </TabsList>
-                <TabsContent value="Input">
-                    <Input inputText={inputText} setInputText={setInputText} />
-                </TabsContent>
-                <TabsContent value="Output">
-                    <Output output={output} />
-                </TabsContent>
-            </Tabs>
-            )}
+            <div className="h-[90vh] overflow-y-scroll">
 
-            {
-                (compile_errors || runtime_errors) && (
-                    <CodeErrors
-                        compile_errors={compile_errors}
-                        runtime_errors={runtime_errors}
-                    />)
-            }
+                <AceEditor
+                    height="70vh"
+                    width="100%"
+                    mode={language}
+                    fontSize="16px"
+                    defaultValue=""
+                    highlightActiveLine={true}
+                    theme={theme}
+                    setOptions={{
+                        enableLiveAutocompletion: true,
+                        showLineNumbers: true,
+                        tabSize: 2,
+                    }}
+                    value={code}
+                    onChange={
+                        (value) => setCode(value)
+                    }
+                />
+                {(<Tabs defaultValue="Input" className="bg-slate-500 pt-1">
+                    <TabsList>
+                        <TabsTrigger value="Input">
+                            Input
+                        </TabsTrigger>
+                        <TabsTrigger value="Output">
+                            Output
+                        </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="Input">
+                        <Input inputText={inputText} setInputText={setInputText} />
+                    </TabsContent>
+                    <TabsContent value="Output">
+                        <Output output={output} />
+                    </TabsContent>
+                </Tabs>
+                )}
+
+                {
+                    (compile_errors || runtime_errors) && (
+                        <CodeErrors
+                            compile_errors={compile_errors}
+                            runtime_errors={runtime_errors}
+                        />)
+                }
+            </div>
         </div>
     )
 }

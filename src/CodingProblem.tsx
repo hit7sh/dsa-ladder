@@ -10,7 +10,7 @@ interface propsI {
 
 const CodingProblem = ({ problem }: propsI) => {
     return (
-        <div>
+        <div className="h-[95vh] overflow-y-scroll">
             <div className="bg-blue-500 p-1.5 rounded-md text-center font-bold">{problem.title}</div>
             <br />
 
