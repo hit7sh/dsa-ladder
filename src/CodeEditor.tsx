@@ -63,7 +63,11 @@ const config: AxiosRequestConfig = {
     },
 };
 
-const CodeEditor = () => {
+interface CodeEditorProps {
+    isAuthenticated: undefined | boolean;
+    userEmail: undefined | string;
+}
+const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
     const [code, setCode] = useState<string | undefined>('');
     const [language, setLanguage] = useState('c_cpp');
     const [theme, setTheme] = useState('cobalt');
@@ -72,14 +76,25 @@ const CodeEditor = () => {
     const [runtime_errors, setRuntimeErrors] = useState('');
     const [inputText, setInputText] = useState('');
     const [loading, setLoading] = useState(false);
+
     const onSelect = (language: string) => {
         setLanguage(language);
     };
 
     const runCode = async () => {
+        if (!isAuthenticated) {
+            alert('Please Sign In to Run code');
+            return;
+        }
         try {
             setLoading(true);
-            const res = await axios.post(`${BACKEND_BASE_URL}/run`, { code, inputText }, config);
+            const res = await axios.post(`${BACKEND_BASE_URL}/run`, {
+                code,
+                inputText,
+                userEmail,
+                language,
+            }, config);
+
             setOutput(res.data.output);
             setCompileErrors(res.data.compile_errors);
             setRuntimeErrors(res.data.runtime_errors);

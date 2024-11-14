@@ -26,10 +26,8 @@ const LanguageSelector = ({ language, onSelect }: Props) => {
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>
                         {LANGUAGES.map((lang) => (
-                            <DropdownMenuItem key={lang} onClick={() => onSelect(lang)}>
-                                {
-                                    lang === 'c_cpp' ? <span>C++</span> : <span>{lang[0].toUpperCase() + lang.slice(1)}</span>
-                                }
+                            <DropdownMenuItem key={lang.ui_name} onClick={() => onSelect(lang.name)}>
+                                <span>{lang.ui_name}</span>
                             </DropdownMenuItem>
                         ))}
                     </DropdownMenuGroup>
