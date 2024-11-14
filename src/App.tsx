@@ -2,7 +2,6 @@ import CodeEditor from "./CodeEditor";
 import CodingProblem from "./CodingProblem";
 import CodingProblemMock from "../mocks/CodingProblemsMock.json"
 import { AppSidebar } from "./AppSidebar";
-import { useState } from "react";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Button } from "./components/ui/button";
