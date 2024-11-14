@@ -4,11 +4,14 @@ import './index.css'
 import App from './App.tsx'
 import { Auth0Provider } from "@auth0/auth0-react"
 
+const domain = import.meta.env.VITE_DOMAIN;
+const clientId = import.meta.env.VITE_CLIENTID;
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Auth0Provider
-      domain="dev-jr8a7yjfh0drqj2w.us.auth0.com"
-      clientId="0Cga6kVMPhP7aY2iAr6RtRVwllvD9F63"
+      domain={domain}
+      clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin
       }}
