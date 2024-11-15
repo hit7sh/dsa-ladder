@@ -7,8 +7,19 @@ import {
     SidebarGroupLabel,
     SidebarHeader,
 } from "@/components/ui/sidebar"
+import { Problem } from "./types/problemsType"
 
-export function AppSidebar() {
+interface AppSidebarPropsI {
+    problems: Problem[] | undefined;
+    setCurrentProblem: any;
+    currentProblem: Problem | undefined;
+};
+
+export function AppSidebar({
+    problems,
+    currentProblem,
+    setCurrentProblem,
+}: AppSidebarPropsI) {
     return (
         <Sidebar>
             <SidebarHeader>
@@ -19,9 +30,16 @@ export function AppSidebar() {
                     <SidebarGroupLabel className="text-black">Problems</SidebarGroupLabel>
 
                     <SidebarGroupContent>
-                        <div className="pl-1">
-                            Mini-Max Sum
-                        </div>
+                        {
+                            problems?.map(({ title }: { title: string }) => (
+                                <div
+                                    className={`pl-1 ${currentProblem?.title === title && 'bg-blue-600'}`}
+                                    onClick={() => setCurrentProblem(title)}
+                                >
+                                    {title}
+                                </div>
+                            ))
+                        }
                     </ SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>

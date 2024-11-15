@@ -21,6 +21,7 @@ function App() {
   } = useAuth0();
   const [problemsLoading, setProblemsLoading] = useState(true);
   const [problems, setProblems] = useState<Problem[] | undefined>();
+  const [currentProblem, setCurrentProblem] = useState<Problem>();
 
   useEffect(() => {
     (async () => {
@@ -28,6 +29,7 @@ function App() {
       const res = await axios.get(`${BACKEND_BASE_URL}/problems`);
       setProblems(res?.data);
       setProblemsLoading(false);
+      setCurrentProblem(res?.data?.[0]);
     })();
   }, [])
 
@@ -56,7 +58,11 @@ function App() {
   return (
     <>
       <SidebarProvider defaultOpen={false} >
-        <AppSidebar />
+        <AppSidebar
+          problems={problems}
+          currentProblem={currentProblem}
+          setCurrentProblem={setCurrentProblem}
+        />
         <main>
           <div className="flex justify-between bg-slate-500 font-bold pt-1 pb-1">
 
@@ -80,7 +86,7 @@ function App() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <CodeEditor isAuthenticated={isAuthenticated} userEmail={user?.email} />
-            <CodingProblem problem={problems?.[0]} />
+            <CodingProblem problem={currentProblem} />
           </div>
         </main>
       </SidebarProvider>
