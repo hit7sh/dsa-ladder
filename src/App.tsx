@@ -33,7 +33,7 @@ function App() {
     })();
   }, [])
 
-  if (isLoading || problemsLoading) {
+  if (problemsLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
         <RingLoader
@@ -67,7 +67,7 @@ function App() {
           <div className="flex justify-between bg-slate-500 font-bold pt-1 pb-1">
 
             <SidebarTrigger />
-            <div className="">Your Dsa Ladder </div>
+            <div className="">Dsa Ladder </div>
             {
               isAuthenticated ? (
                 <div className="pr-5">{user?.given_name || user?.name || user?.email}
