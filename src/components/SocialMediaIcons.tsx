@@ -5,7 +5,7 @@ export const InstagramIcon = () => (
         {/* <!-- Instagram --> */}
         <button
             type="button"
-            className="inline-block rounded px-6 py-1.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+            className="inline-block rounded px-3 py-1.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
             style={{ backgroundColor: "#c13584" }}
         >
             <svg
@@ -23,7 +23,7 @@ export const LinkedInIcon = () => (
     <TERipple rippleColor="light">
         <button
             type="button"
-            className="inline-block rounded px-4 py-1.5 text-xs font-sm uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+            className="inline-block rounded px-3 py-1.5 text-xs font-sm uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
             style={{ backgroundColor: "#0077b5" }}
         >
             <svg
@@ -42,7 +42,7 @@ export const TwitterIcon = () => (
     <TERipple rippleColor="light">
         <button
             type="button"
-            className="inline-block rounded px-4 py-1.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+            className="inline-block rounded px-3 py-1.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
             style={{ backgroundColor: "#1da1f2" }}
         >
             <svg
@@ -61,7 +61,7 @@ export const WhatsAppIcon = () => (
     <TERipple rippleColor="light">
         <button
             type="button"
-            className="inline-block rounded px-4 py-1.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+            className="inline-block rounded px-3 py-1.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
             style={{ backgroundColor: "#128c7e" }}
         >
             <svg

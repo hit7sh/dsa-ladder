@@ -10,7 +10,7 @@ import {
 import { SiGmail } from "react-icons/si";
 
 import { Problem } from "./types/problemsType"
-import { LinkedInIcon } from "./components/SocialMediaIcons";
+import { LinkedInIcon, TwitterIcon } from "./components/SocialMediaIcons";
 
 interface AppSidebarPropsI {
     problems: Problem[] | undefined;
@@ -27,7 +27,7 @@ export function AppSidebar({
         <Sidebar>
             <SidebarHeader>
                 <SidebarGroupLabel className="text-black font-bold font-mono text-center">
-                    Let's connect..
+                    Let's Connect👋
                     <a
                         href="https://mail.google.com/mail/?view=cm&fs=1&to=hit7sh@gmail.com"
                         target="_blank"
@@ -42,6 +42,15 @@ export function AppSidebar({
                     >
                         <div className="rounded-sm ml-2">
                             <LinkedInIcon></LinkedInIcon>
+                        </div>
+                    </a>
+
+                    <a
+                        href="https://www.x.com/hit7sh"
+                        target="_blank"
+                    >
+                        <div className="rounded-sm ml-2">
+                            <TwitterIcon></TwitterIcon>
                         </div>
                     </a>
                 </SidebarGroupLabel>
