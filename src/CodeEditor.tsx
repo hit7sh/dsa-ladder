@@ -141,6 +141,13 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                         (value) => setCode(value)
                     }
                 />
+                {
+                    (compile_errors || runtime_errors) && (
+                        <CodeErrors
+                            compile_errors={compile_errors}
+                            runtime_errors={runtime_errors}
+                        />)
+                }
                 {(<Tabs defaultValue="Input" className="bg-slate-500 pt-1">
                     <TabsList>
                         <TabsTrigger value="Input">
@@ -158,14 +165,6 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                     </TabsContent>
                 </Tabs>
                 )}
-
-                {
-                    (compile_errors || runtime_errors) && (
-                        <CodeErrors
-                            compile_errors={compile_errors}
-                            runtime_errors={runtime_errors}
-                        />)
-                }
             </div>
         </div>
     )
