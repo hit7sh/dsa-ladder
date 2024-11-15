@@ -26,7 +26,7 @@ export function AppSidebar({
     return (
         <Sidebar>
             <SidebarHeader>
-                <SidebarGroupLabel className="text-black font-bold font-mono text-center">
+                <SidebarGroupLabel className="text-black font-bold font-mono text-center mt-1">
                     Let's Connect👋
                     <a
                         href="https://mail.google.com/mail/?view=cm&fs=1&to=hit7sh@gmail.com"
@@ -56,6 +56,7 @@ export function AppSidebar({
                 </SidebarGroupLabel>
             </SidebarHeader>
             <SidebarContent>
+                <div className="border-t border-black" />
                 <SidebarGroup>
                     <SidebarGroupLabel className="text-black text-lg bg-gray-600 mb-4">Problems</SidebarGroupLabel>
 
