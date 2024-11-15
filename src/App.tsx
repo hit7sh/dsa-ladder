@@ -33,7 +33,7 @@ function App() {
     })();
   }, [])
 
-  if (problemsLoading) {
+  if (isLoading || problemsLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
         <RingLoader
