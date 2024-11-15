@@ -88,6 +88,7 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
         }
         try {
             setLoading(true);
+            setOutput('');
             const res = await axios.post(`${BACKEND_BASE_URL}/run`, {
                 code,
                 inputText,

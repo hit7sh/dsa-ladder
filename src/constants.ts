@@ -1,5 +1,13 @@
 export const LANGUAGES = [
     {
+        name: 'c_cpp',
+        ui_name: 'C++',
+    },
+    {
+        name: 'python',
+        ui_name: 'Python',
+    },
+    {
         name: 'javascript',
         ui_name: 'Javascript(NodeJs)',
     },
@@ -7,14 +15,6 @@ export const LANGUAGES = [
         name: 'java',
         ui_name: 'Java',
     },
-    {
-        name: 'c_cpp',
-        ui_name: 'C++',
-    },
-    {
-        name: 'python',
-        ui_name: 'Python',
-    }
 ];
 
 export const BACKEND_BASE_URL = 'https://dsa-ladder.hit7sh.in.net';
