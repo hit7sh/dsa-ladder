@@ -149,7 +149,7 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                             runtime_errors={runtime_errors}
                         />)
                 }
-                {(<Tabs defaultValue="Input" className="bg-slate-500 pt-1">
+                {(<Tabs defaultValue={output ? 'Output' : 'Input'} className="bg-slate-500 pt-1">
                     <TabsList>
                         <TabsTrigger value="Input">
                             Input
