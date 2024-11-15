@@ -167,6 +167,8 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                 </Tabs>
                 )}
             </div>
+            <br />
+            <br />
         </div>
     )
 }

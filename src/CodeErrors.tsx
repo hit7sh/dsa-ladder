@@ -6,7 +6,7 @@ interface CodeErrorsPropsT {
 const CodeErrors = ({ compile_errors, runtime_errors }: CodeErrorsPropsT) => {
     return (
         <>
-            <div className="bg-red-400 mt-1 pl-2"> ERRORS </div>
+            <div className="bg-red-400 mt-1 pl-2"> Errors 🐞 </div>
             <div>{compile_errors || runtime_errors}</div>
         </>
     )
