@@ -11,19 +11,23 @@ interface propsI {
 const CodingProblem = ({ problem }: propsI) => {
     return (
         <div className="h-[95vh] overflow-y-scroll">
-            <div className="bg-blue-500 p-1.5 rounded-md text-center font-bold">{problem.title}</div>
+            <div className="bg-blue-500 p-1.5 rounded-md text-center font-bold">{problem?.title}</div>
             <br />
-
             <div className="markdown-container">
                 <ReactMarkdown rehypePlugins={[rehypeKatex, remarkMath]}>
-                    {problem.problem_statement}
+                    {problem?.description}
+                </ReactMarkdown>
+            </div>
+            <div className="markdown-container">
+                <ReactMarkdown rehypePlugins={[rehypeKatex, remarkMath]}>
+                    {problem?.problemStatement}
                 </ReactMarkdown>
             </div>
             <br />
             <div className="markdown-container">
                 <div className="font-bold">Constraints:</div>
                 <ReactMarkdown rehypePlugins={[rehypeKatex, remarkMath]}>
-                    {problem.constraints}
+                    {problem?.constraints}
                 </ReactMarkdown>
             </div>
             <br />
@@ -40,6 +44,21 @@ const CodingProblem = ({ problem }: propsI) => {
                     {problem.output_format}
                 </ReactMarkdown>
             </div>
+            <br />
+            {
+                problem?.examples?.map?.((example: string) => (
+                    <>
+                        <div className="markdown-container">
+                            <ReactMarkdown rehypePlugins={[rehypeKatex, remarkMath]}>
+                                {example}
+                            </ReactMarkdown>
+                        </div>
+                        <br />
+                    </>
+                ))
+            }
+            <br />
+            <br />
         </div>
     )
 }

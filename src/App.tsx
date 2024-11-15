@@ -6,6 +6,10 @@ import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Button } from "./components/ui/button";
 import RingLoader from "react-spinners/RingLoader";
+import { useEffect, useState } from "react";
+import { Problem } from "./types/problemsType";
+import { BACKEND_BASE_URL } from "./constants";
+import axios from "axios";
 
 function App() {
 
@@ -16,9 +20,19 @@ function App() {
     logout,
     isLoading,
   } = useAuth0();
+  const [problemsLoading, setProblemsLoading] = useState(true);
+  const [problems, setProblems] = useState<Problem[] | undefined>();
 
-  console.log({ user })
-  if (isLoading) {
+  useEffect(() => {
+    (async () => {
+      setProblemsLoading(true);
+      const res = await axios.get(`${BACKEND_BASE_URL}/problems`);
+      setProblems(res?.data);
+      setProblemsLoading(false);
+    })();
+  }, [])
+
+  if (isLoading || problemsLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
         <RingLoader
@@ -67,7 +81,7 @@ function App() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <CodeEditor isAuthenticated={isAuthenticated} userEmail={user?.email} />
-            <CodingProblem problem={CodingProblemMock} />
+            <CodingProblem problem={problems?.[0]} />
           </div>
         </main>
       </SidebarProvider>
