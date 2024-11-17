@@ -17,7 +17,7 @@ export const LANGUAGES = [
     // },
 ];
 
-export const BACKEND_BASE_URL = 'https://dsa-ladder.hit7sh.in.net';
+export const BACKEND_BASE_URL = '13.233.150.81:3000';
 
 export const EDITOR_THEMES = [
     'ambiance',
