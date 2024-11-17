@@ -7,14 +7,14 @@ export const LANGUAGES = [
         name: 'python',
         ui_name: 'Python',
     },
-    {
-        name: 'javascript',
-        ui_name: 'Javascript(NodeJs)',
-    },
-    {
-        name: 'java',
-        ui_name: 'Java',
-    },
+    // {
+    //     name: 'javascript',
+    //     ui_name: 'Javascript(NodeJs)',
+    // },
+    // {
+    //     name: 'java',
+    //     ui_name: 'Java',
+    // },
 ];
 
 export const BACKEND_BASE_URL = 'https://dsa-ladder.hit7sh.in.net';
