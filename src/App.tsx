@@ -72,7 +72,7 @@ function App() {
               isAuthenticated ? (
                 <div className="pr-5">{user?.given_name || user?.name || user?.email}
                   <img className="ml-1 inline-flex bottom-5 right-5 w-6 h-6 rounded-full object-cover"
-                    src="https://lh3.googleusercontent.com/a/ACg8ocKsEjn8mRitZl90cej2GgXJnZQm_jCH9Plhu9LNm2Mzbc_z=s96-c" height="10px" width="10px" />
+                    src={user?.picture} height="10px" width="10px" />
                   <Button className="rounded h-6 ml-2 bg-white" onClick={() => logout()} variant="secondary">
                     Log Out
                   </Button>
