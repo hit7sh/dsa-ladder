@@ -17,7 +17,7 @@ export const LANGUAGES = [
     // },
 ];
 
-export const BACKEND_BASE_URL = 'https://dsa-ladder.hit7sh.in.net';
+export const BACKEND_BASE_URL = 'https://dsa-ladder-backend.hiteshproject.shop';
 
 export const EDITOR_THEMES = [
     'ambiance',
