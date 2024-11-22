@@ -68,6 +68,7 @@ function App() {
           <div className="flex justify-between bg-slate-500 font-bold pt-1 pb-1">
 
             <SidebarTrigger />
+            {problemsLoading && <div className="text-red-500">BACKEND INACTIVE</div>}
             <div className="">Dsa Ladder </div>
             {
               isAuthenticated ? (
