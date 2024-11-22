@@ -48,7 +48,7 @@ import { Button } from './components/ui/button';
 import ThemeSelector from './ThemeSelector';
 
 import { TiMediaPlay } from "react-icons/ti";
-import { BACKEND_BASE_URL } from './constants';
+import { BACKEND_BASE_URL, defaultCode } from './constants';
 import axios, { AxiosRequestConfig } from 'axios';
 import Output from './Output';
 import CodeErrors from './CodeErrors';
@@ -68,8 +68,8 @@ interface CodeEditorProps {
     userEmail: undefined | string;
 }
 const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
-    const [code, setCode] = useState<string | undefined>('');
     const [language, setLanguage] = useState('c_cpp');
+    const [code, setCode] = useState<string | undefined>(defaultCode[language]);
     const [theme, setTheme] = useState('cobalt');
     const [output, setOutput] = useState('');
     const [compile_errors, setCompileErrors] = useState('');
@@ -79,6 +79,7 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
 
     const onSelect = (language: string) => {
         setLanguage(language);
+        setCode(defaultCode[language]);
     };
 
     const runCode = async () => {
@@ -123,13 +124,12 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                 <ThemeSelector setTheme={setTheme} />
             </div>
             <div className="h-[90vh] overflow-y-scroll">
-
                 <AceEditor
                     height="70vh"
                     width="100%"
                     mode={language}
                     fontSize="16px"
-                    defaultValue=""
+                    defaultValue={defaultCode[language]}
                     highlightActiveLine={true}
                     theme={theme}
                     setOptions={{

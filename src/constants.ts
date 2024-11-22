@@ -7,10 +7,10 @@ export const LANGUAGES = [
         name: 'python',
         ui_name: 'Python',
     },
-    // {
-    //     name: 'javascript',
-    //     ui_name: 'Javascript(NodeJs)',
-    // },
+    {
+        name: 'javascript',
+        ui_name: 'Javascript(NodeJs)',
+    },
     // {
     //     name: 'java',
     //     ui_name: 'Java',
@@ -58,3 +58,24 @@ export const EDITOR_THEMES = [
     'vibrant_ink',
     'xcode',
 ]
+
+export const defaultCode: { [key: string]: string } = {
+    c_cpp: (
+        `#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    cin.tie(0)->sync_with_stdio(0);
+    
+    return 0;
+}`),
+    python: '',
+    javascript: '',
+    java: (
+        `// NOTE: Don't change class Name from 'MainClass'
+public class MainClass {
+    public static void main(String args[]) {
+        
+    }
+}`)
+};

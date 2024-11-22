@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Button } from "./components/ui/button";
 import RingLoader from "react-spinners/RingLoader";
+import CodingProblemsMock from '../mocks/CodingProblemsMock.json'
 import { useEffect, useState } from "react";
 import { Problem } from "./types/problemsType";
 import { BACKEND_BASE_URL } from "./constants";
@@ -20,8 +21,8 @@ function App() {
     isLoading,
   } = useAuth0();
   const [problemsLoading, setProblemsLoading] = useState(true);
-  const [problems, setProblems] = useState<Problem[] | undefined>();
-  const [currentProblem, setCurrentProblem] = useState<Problem>();
+  const [problems, setProblems] = useState<Problem[] | undefined | any>(CodingProblemsMock);
+  const [currentProblem, setCurrentProblem] = useState<Problem | any>(CodingProblemsMock[0]);
 
   useEffect(() => {
     (async () => {
@@ -33,7 +34,7 @@ function App() {
     })();
   }, [])
 
-  if (isLoading || problemsLoading) {
+  if (isLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
         <RingLoader
