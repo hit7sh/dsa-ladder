@@ -80,7 +80,14 @@ function App() {
                   </Button>
                 </div>
               ) : (
-                <Button className="rounded h-6 ml-2 bg-blue-400 mr-2" onClick={() => loginWithRedirect()} variant="secondary">
+                <Button
+                  className="rounded h-6 ml-2 bg-blue-400 mr-2"
+                  onClick={() => loginWithRedirect({
+                    authorizationParams: {
+                      connection: 'google-oauth2' // Connection name for Google
+                    }
+                  })}
+                  variant="secondary">
                   Sign In
                 </Button>
               )
