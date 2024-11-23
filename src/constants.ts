@@ -11,10 +11,10 @@ export const LANGUAGES = [
         name: 'javascript',
         ui_name: 'Javascript(NodeJs)',
     },
-    // {
-    //     name: 'java',
-    //     ui_name: 'Java',
-    // },
+    {
+        name: 'java',
+        ui_name: 'Java',
+    },
 ];
 
 export const BACKEND_BASE_URL = 'https://dsa-ladder-backend.hiteshproject.shop';
