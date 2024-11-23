@@ -9,6 +9,8 @@ import CodingProblemsMock from '../mocks/CodingProblemsMock.json'
 import { useEffect, useState } from "react";
 import { Problem } from "./types/problemsType";
 import { BACKEND_BASE_URL } from "./constants";
+import { FcGoogle } from "react-icons/fc";
+
 import axios from "axios";
 
 function App() {
@@ -65,7 +67,7 @@ function App() {
           setCurrentProblem={setCurrentProblem}
         />
         <main>
-          <div className="flex justify-between bg-slate-500 font-bold pt-1 pb-1">
+          <div className="flex justify-between bg-cyan-800 font-bold pt-1 pb-1">
 
             <SidebarTrigger />
             {problemsLoading && <div className="text-red-500">Backend is loading</div>}
@@ -75,21 +77,19 @@ function App() {
                 <div className="pr-5">{user?.given_name || user?.name || user?.email}
                   <img className="ml-1 inline-flex bottom-5 right-5 w-6 h-6 rounded-full object-cover"
                     src={user?.picture} height="10px" width="10px" />
-                  <Button className="rounded h-6 ml-2 bg-white" onClick={() => logout()} variant="secondary">
+                  <Button className="rounded h-6 ml-2 bg-red-white" onClick={() => logout()} variant="secondary">
                     Log Out
                   </Button>
                 </div>
               ) : (
-                <Button
-                  className="rounded h-6 ml-2 bg-blue-400 mr-2"
+
+                <button
+                  className="rounded h-6 ml-2 mr-2 text-sm flex bg-white pr-1 pl-1 font-medium"
                   onClick={() => loginWithRedirect({
                     authorizationParams: {
-                      connection: 'google-oauth2' // Connection name for Google
+                      connection: 'google-oauth2'
                     }
-                  })}
-                  variant="secondary">
-                  Sign In
-                </Button>
+                  })} > Sign in with <span className="mt-1 ml-1"><FcGoogle /></span>oogle </button>
               )
             }
           </div>
