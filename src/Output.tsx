@@ -5,7 +5,7 @@ const Output = ({ output }: { output: string }) => {
     return (
         <>
             <div className="bg-blue-200 pl-2" style={{ whiteSpace: "pre-line" }}>
-                {output || '<<No Output>>'}
+                {output || '<<Empty>>'}
             </div>
         </>
     )

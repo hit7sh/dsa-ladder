@@ -55,6 +55,7 @@ import CodeErrors from './CodeErrors';
 import RingLoader from "react-spinners/RingLoader";
 import Input from './Input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Submission from './Submission';
 
 const config: AxiosRequestConfig = {
     headers: {
@@ -65,9 +66,9 @@ const config: AxiosRequestConfig = {
 
 interface CodeEditorProps {
     isAuthenticated: undefined | boolean;
-    userEmail: undefined | string;
+    problemTitle: undefined | string;
 }
-const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
+const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
     const [language, setLanguage] = useState('c_cpp');
     const [code, setCode] = useState<string | undefined>(defaultCode[language]);
     const [theme, setTheme] = useState('cobalt');
@@ -75,6 +76,8 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
     const [compile_errors, setCompileErrors] = useState('');
     const [runtime_errors, setRuntimeErrors] = useState('');
     const [inputText, setInputText] = useState('');
+    const [submitResponse, setSubmitResponse] = useState([]);
+    const [submitLoading, setSubmitLoading] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const onSelect = (language: string) => {
@@ -93,7 +96,6 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
             const res = await axios.post(`${BACKEND_BASE_URL}/run`, {
                 code,
                 inputText,
-                userEmail,
                 language,
             }, config);
 
@@ -105,23 +107,59 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
         }
     };
 
+    const submitCode = async () => {
+        if (!isAuthenticated) {
+            alert('Please Sign In to Submit code');
+            return;
+        }
+        try {
+            setSubmitLoading(true);
+            setSubmitResponse([]);
+            const res = await axios.post(`${BACKEND_BASE_URL}/submit`, {
+                code,
+                language,
+                problemTitle,
+            }, config);
+
+            setSubmitResponse(res.data);
+            setSubmitLoading(false);
+        } catch (err) {
+        }
+    }
+
     return (
         <div>
             <div className="flex flex-row-reverse justify-between">
-                <Button disabled={loading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
-                    {!loading && 'Run'}
-                    {!loading ? (<TiMediaPlay />) : (
-                        <RingLoader
-                            color="green"
-                            loading={true}
-                            size={25}
-                            aria-label="Loading Spinner"
-                            data-testid="loader"
-                        />
-                    )}
-                </Button>
-                <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
-                <ThemeSelector setTheme={setTheme} />
+                <div className='flex'>
+                    <Button disabled={loading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
+                        {!loading && 'Run'}
+                        {!loading ? (<TiMediaPlay />) : (
+                            <RingLoader
+                                color="green"
+                                loading={true}
+                                size={25}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        )}
+                    </Button>
+                    <Button disabled={loading} className="rounded border-solid border-4" onClick={submitCode} variant="secondary">
+                        {!loading && 'Submit'}
+                        {!loading ? (<TiMediaPlay />) : (
+                            <RingLoader
+                                color="green"
+                                loading={true}
+                                size={25}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        )}
+                    </Button>
+                </div>
+                <div className='flex'>
+                    <ThemeSelector setTheme={setTheme} />
+                    <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
+                </div>
             </div>
             <div className="h-[88vh] overflow-y-scroll w-full">
                 <AceEditor
@@ -149,20 +187,38 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                             runtime_errors={runtime_errors}
                         />)
                 }
-                {(<Tabs defaultValue={output ? 'Output' : 'Input'} className="bg-slate-500 pt-1">
-                    <TabsList>
+                {(<Tabs defaultValue={'Output'} className="bg-slate-500 pt-1">
+                    <TabsList className="bg-slate-200" >
                         <TabsTrigger value="Input">
                             Input
                         </TabsTrigger>
                         <TabsTrigger value="Output">
                             Output
                         </TabsTrigger>
+                        <TabsTrigger value="Submission">
+                            Submission Result
+                        </TabsTrigger>
                     </TabsList>
                     <TabsContent value="Input">
                         <Input inputText={inputText} setInputText={setInputText} />
                     </TabsContent>
                     <TabsContent value="Output">
-                        <Output output={output} />
+                        {loading ? (<RingLoader
+                            color="green"
+                            loading={true}
+                            size={25}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />) : <Output output={output} />}
+                    </TabsContent>
+                    <TabsContent value="Submission">
+                        {submitLoading ? (<RingLoader
+                            color="green"
+                            loading={true}
+                            size={25}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />) : (<Submission submitResponse={submitResponse} />)}
                     </TabsContent>
                 </Tabs>
                 )}

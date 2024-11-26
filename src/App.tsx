@@ -94,7 +94,7 @@ function App() {
             }
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <CodeEditor isAuthenticated={isAuthenticated} userEmail={user?.email} />
+            <CodeEditor isAuthenticated={isAuthenticated} problemTitle={currentProblem?.title} />
             <CodingProblem problem={currentProblem} />
           </div>
         </main>
