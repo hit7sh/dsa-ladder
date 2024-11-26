@@ -144,8 +144,8 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                         )}
                     </Button>
                     <Button disabled={loading} className="rounded border-solid border-4" onClick={submitCode} variant="secondary">
-                        {!loading && 'Submit'}
-                        {!loading ? (<TiMediaPlay />) : (
+                        {!submitLoading && 'Submit'}
+                        {!submitLoading ? (<TiMediaPlay />) : (
                             <RingLoader
                                 color="green"
                                 loading={true}
@@ -203,22 +203,22 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                         <Input inputText={inputText} setInputText={setInputText} />
                     </TabsContent>
                     <TabsContent value="Output">
-                        {loading ? (<RingLoader
-                            color="green"
+                        {loading ? (<center><RingLoader
+                            color="white"
                             loading={true}
-                            size={25}
+                            size={40}
                             aria-label="Loading Spinner"
                             data-testid="loader"
-                        />) : <Output output={output} />}
+                        /></center>) : <Output output={output} />}
                     </TabsContent>
                     <TabsContent value="Submission">
-                        {submitLoading ? (<RingLoader
-                            color="green"
+                        {submitLoading ? (<center><RingLoader
+                            color="white"
                             loading={true}
-                            size={25}
+                            size={40}
                             aria-label="Loading Spinner"
                             data-testid="loader"
-                        />) : (<Submission submitResponse={submitResponse} />)}
+                        /></center>) : (<Submission submitResponse={submitResponse} />)}
                     </TabsContent>
                 </Tabs>
                 )}
