@@ -121,7 +121,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                 problemTitle,
             }, config);
 
-            setSubmitResponse(res.data);
+            setSubmitResponse(res.data.response);
             setSubmitLoading(false);
         } catch (err) {
         }
