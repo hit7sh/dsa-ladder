@@ -66,7 +66,7 @@ function App() {
           currentProblem={currentProblem}
           setCurrentProblem={setCurrentProblem}
         />
-        <main>
+        <main className="w-screen h-screen overflow-hidden">
           <div className="flex justify-between bg-cyan-800 font-bold pt-1 pb-1">
 
             <SidebarTrigger />

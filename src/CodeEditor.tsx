@@ -123,7 +123,7 @@ const CodeEditor = ({ isAuthenticated, userEmail }: CodeEditorProps) => {
                 <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 <ThemeSelector setTheme={setTheme} />
             </div>
-            <div className="h-[90vh] overflow-y-scroll">
+            <div className="h-[88vh] overflow-y-scroll w-full">
                 <AceEditor
                     height="70vh"
                     width="100%"
