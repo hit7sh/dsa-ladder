@@ -67,8 +67,9 @@ const config: AxiosRequestConfig = {
 interface CodeEditorProps {
     isAuthenticated: undefined | boolean;
     problemTitle: undefined | string;
+    userEmail: undefined | string;
 }
-const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
+const CodeEditor = ({ isAuthenticated, problemTitle, userEmail }: CodeEditorProps) => {
     const [language, setLanguage] = useState('c_cpp');
     const [code, setCode] = useState<string | undefined>(defaultCode[language]);
     const [theme, setTheme] = useState('cobalt');
@@ -121,6 +122,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                 code,
                 language,
                 problemTitle,
+                userEmail,
             }, config);
 
             setSubmitResponse(res.data.response);

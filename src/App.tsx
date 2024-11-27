@@ -86,7 +86,7 @@ function App() {
                 <div className="pr-5">{user?.given_name || user?.name || user?.email}
                   <img className="ml-1 inline-flex bottom-5 right-5 w-6 h-6 rounded-full object-cover"
                     src={user?.picture} height="10px" width="10px" />
-                  <Button className="rounded h-6 ml-2 bg-red-white" onClick={() => logout()} variant="secondary">
+                  <Button className="rounded h-6 ml-2 bg-white" onClick={() => logout()} variant="secondary">
                     Log Out
                   </Button>
                 </div>
@@ -103,7 +103,7 @@ function App() {
             }
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <CodeEditor isAuthenticated={isAuthenticated} problemTitle={currentProblem?.title} />
+            <CodeEditor isAuthenticated={isAuthenticated} problemTitle={currentProblem?.title} userEmail={user?.email} />
             <CodingProblem problem={currentProblem} />
           </div>
         </main>

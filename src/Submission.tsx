@@ -26,7 +26,7 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
     }
     return (
         <>
-            <div className="bg-blue-300 pl-2" style={{ whiteSpace: "pre-line" }}>
+            <div className="bg-blue-300 pl-2 mt-1" style={{ whiteSpace: "pre-line" }}>
                 <link rel="icon" type="image/svg+xml" href="./src/assets/code.svg" />
                 <div className="flex flex-wrap">
                     {submitResponse?.map((resp, index) => {
