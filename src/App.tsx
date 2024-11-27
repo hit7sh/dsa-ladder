@@ -25,6 +25,7 @@ function App() {
   const [problemsLoading, setProblemsLoading] = useState(true);
   const [problems, setProblems] = useState<Problem[] | undefined | any>(CodingProblemsMock);
   const [currentProblem, setCurrentProblem] = useState<Problem | any>(CodingProblemsMock[0]);
+  const [solvedProblems, setSolvedProblems] = useState<string[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -41,6 +42,11 @@ function App() {
         await axios.post(`${BACKEND_BASE_URL}/log-user`, {
           userEmail: user?.email,
         });
+        const { data } = await axios.post(`${BACKEND_BASE_URL}/get-solved-problems`, {
+          userEmail: user?.email,
+        });
+        if (data?.length)
+          setSolvedProblems(data);
       })();
     }
   }, [isAuthenticated]);
@@ -74,9 +80,10 @@ function App() {
           problems={problems}
           currentProblem={currentProblem}
           setCurrentProblem={setCurrentProblem}
+          solvedProblems={solvedProblems}
         />
         <main className="w-screen h-screen overflow-hidden">
-          <div className="flex justify-between bg-blue-500 font-bold pt-1 pb-1">
+          <div className="flex justify-between bg-blue-500 font-bold">
 
             <SidebarTrigger />
             {problemsLoading && <div className="text-red-500">Backend is loading</div>}
@@ -91,9 +98,8 @@ function App() {
                   </Button>
                 </div>
               ) : (
-
                 <button
-                  className="rounded h-6 ml-2 mr-2 text-sm flex bg-white pr-1 pl-1 font-medium"
+                  className="rounded h-[4vh] mr-2 text-sm flex bg-white pr-1 pl-1 font-medium"
                   onClick={() => loginWithRedirect({
                     authorizationParams: {
                       connection: 'google-oauth2'
@@ -103,7 +109,13 @@ function App() {
             }
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <CodeEditor isAuthenticated={isAuthenticated} problemTitle={currentProblem?.title} userEmail={user?.email} />
+            <CodeEditor
+              isAuthenticated={isAuthenticated}
+              problemTitle={currentProblem?.title}
+              userEmail={user?.email}
+              solvedProblems={solvedProblems}
+              setSolvedProblems={setSolvedProblems}
+            />
             <CodingProblem problem={currentProblem} />
           </div>
         </main>

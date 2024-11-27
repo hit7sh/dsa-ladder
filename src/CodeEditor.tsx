@@ -68,8 +68,10 @@ interface CodeEditorProps {
     isAuthenticated: undefined | boolean;
     problemTitle: undefined | string;
     userEmail: undefined | string;
+    setSolvedProblems: any;
+    solvedProblems: string[];
 }
-const CodeEditor = ({ isAuthenticated, problemTitle, userEmail }: CodeEditorProps) => {
+const CodeEditor = ({ isAuthenticated, problemTitle, userEmail, setSolvedProblems, solvedProblems }: CodeEditorProps) => {
     const [language, setLanguage] = useState('c_cpp');
     const [code, setCode] = useState<string | undefined>(defaultCode[language]);
     const [theme, setTheme] = useState('cobalt');
@@ -126,6 +128,13 @@ const CodeEditor = ({ isAuthenticated, problemTitle, userEmail }: CodeEditorProp
             }, config);
 
             setSubmitResponse(res.data.response);
+            if (res?.data?.response?.length) {
+                let solved = true;
+                res.data.response?.(({ verdict }: any) => verdict === 'AC' && (solved = false));
+                if (solved) {
+                    setSolvedProblems([...solvedProblems, problemTitle]);
+                }
+            }
             setSubmitLoading(false);
             setCurrentTab('Submission');
         } catch (err) {

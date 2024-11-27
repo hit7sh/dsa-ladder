@@ -16,12 +16,14 @@ interface AppSidebarPropsI {
     problems: Problem[] | undefined;
     setCurrentProblem: any;
     currentProblem: Problem | undefined;
+    solvedProblems: string[],
 };
 
 export function AppSidebar({
     problems,
     currentProblem,
     setCurrentProblem,
+    solvedProblems,
 }: AppSidebarPropsI) {
     return (
         <Sidebar>
@@ -64,10 +66,13 @@ export function AppSidebar({
                         {
                             problems?.map((problem: Problem) => (
                                 <div
-                                    className={`pl-1 hover:cursor-pointer rounded-md text-black pt-1 pb-1 ${currentProblem?.title === problem?.title ? 'bg-blue-600' : 'bg-slate-300'}`}
+                                    className={`pl-1 flex justify-between hover:cursor-pointer rounded-md text-black pt-1 pb-1 ${currentProblem?.title === problem?.title ? 'bg-blue-600' : 'bg-slate-300'}`}
                                     onClick={() => problem?.title !== currentProblem?.title && setCurrentProblem(problem)}
                                 >
-                                    {problem?.title}
+                                    <div>{problem?.title}</div>
+                                    {solvedProblems.find((title) => title === problem?.title) && (<svg className="w-[3.5vh] h-[3.5vh]" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#31AF1C">
+                                        <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" />
+                                    </svg>)}
                                 </div>
                             ))
                         }
