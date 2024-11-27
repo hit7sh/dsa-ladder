@@ -32,7 +32,7 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
                     {submitResponse?.map((resp, index) => {
                         return (
                             <Button
-                                onClick={() => index < 3 && setTestCaseDetails(resp)}
+                                onClick={() => setTestCaseDetails(resp)}
                                 key={index}
                                 variant="secondary"
                                 className="m-1"
