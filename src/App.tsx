@@ -35,7 +35,15 @@ function App() {
       setCurrentProblem(res?.data?.[0]);
     })();
   }, [])
-
+  useEffect(() => {
+    if (isAuthenticated) {
+      (async () => {
+        await axios.post(`${BACKEND_BASE_URL}/log-user`, {
+          userEmail: user?.email,
+        });
+      })();
+    }
+  }, [isAuthenticated])
   if (isLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
