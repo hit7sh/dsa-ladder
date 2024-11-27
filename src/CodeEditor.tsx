@@ -130,7 +130,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle, userEmail, setSolvedProblem
             setSubmitResponse(res.data.response);
             if (res?.data?.response?.length) {
                 let solved = true;
-                res.data.response?.forEach?.(({ verdict }: any) => verdict === 'AC' && (solved = false));
+                res.data.response?.forEach?.(({ verdict }: any) => verdict !== 'AC' && (solved = false));
                 if (solved) {
                     setSolvedProblems([...solvedProblems, problemTitle]);
                 }
