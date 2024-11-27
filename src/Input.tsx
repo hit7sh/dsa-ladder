@@ -4,7 +4,7 @@ const Input = ({ inputText, setInputText }: { inputText: string, setInputText: a
     return (
         <>
             <Textarea
-                className="bg-blue-200 h-24 border-4"
+                className="border-gray-300 bg-white h-24 border-4"
                 value={inputText}
                 placeholder="Write custom input here..."
                 onChange={(e) => setInputText(e.target.value)}

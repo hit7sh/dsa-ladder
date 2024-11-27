@@ -76,11 +76,11 @@ function App() {
           setCurrentProblem={setCurrentProblem}
         />
         <main className="w-screen h-screen overflow-hidden">
-          <div className="flex justify-between bg-cyan-800 font-bold pt-1 pb-1">
+          <div className="flex justify-between bg-blue-500 font-bold pt-1 pb-1">
 
             <SidebarTrigger />
             {problemsLoading && <div className="text-red-500">Backend is loading</div>}
-            <div className="">Dsa Ladder </div>
+            <div className="font-serif">Dsa Ladder </div>
             {
               isAuthenticated ? (
                 <div className="pr-5">{user?.given_name || user?.name || user?.email}

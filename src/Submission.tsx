@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "./components/ui/button";
+import { IoMdLock } from "react-icons/io";
 
 interface SubmissionPropTypes {
     submitResponse: {
@@ -21,11 +22,11 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
     }>(submitResponse?.[0]);
 
     if (submitResponse.length === 0) {
-        return <div>Please Submit your code.</div>
+        return <div className="pl-1 border-gray-300 bg-white border-4">Please Submit your code.</div>
     }
     return (
         <>
-            <div className="bg-blue-200 pl-2" style={{ whiteSpace: "pre-line" }}>
+            <div className="bg-blue-300 pl-2" style={{ whiteSpace: "pre-line" }}>
                 <link rel="icon" type="image/svg+xml" href="./src/assets/code.svg" />
                 <div className="flex flex-wrap">
                     {submitResponse?.map((resp, index) => {
@@ -41,22 +42,27 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
                                         <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" />
                                     </svg>
                                 ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#8B1A10"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#FA1A10"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
                                 )}
                                 {`Test ${index + 1}`}
                             </Button>);
                     })}
                 </div>
-                <div>
-                    <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Input</div>
-                    <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.input}</div>
+                {
+                    !testCaseDetails?.input ? (<div>
+                        <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Input</div>
+                        <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.input}</div>
 
-                    <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Expected Output: </div>
-                    <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.expectedOutput}</div>
+                        <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Expected Output: </div>
+                        <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.expectedOutput}</div>
 
-                    <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Your Output: </div>
-                    <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.codeOutput || <span className="text-red-600">{testCaseDetails?.verdict}</span>}</div>
-                </div>
+                        <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Your Output: </div>
+                        <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.codeOutput || <span className="text-red-600">{testCaseDetails?.verdict}</span>}</div>
+                    </div>) : (<div>
+                        <div className="pl-2 mr-2 bg-white mt-1 font-semibold flex rounded-t-sm"> <IoMdLock className="m-1" /> Hidden Test Case. </div>
+                    </div>)
+                }
+
             </div>
         </>
     )
