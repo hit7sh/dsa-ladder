@@ -11,8 +11,9 @@ interface propsI {
 const CodingProblem = ({ problem }: propsI) => {
     return (
         <div className="h-[93vh] overflow-y-scroll">
-            <div className="p-1.5 rounded-md text-center font-bold">{problem?.title}</div>
-            <br />
+            <div className="p-1.5 text-center font-bold">{problem?.title}</div>
+            <hr className="border-gray-300 mb-2" />
+
             <div className="markdown-container">
                 <ReactMarkdown rehypePlugins={[rehypeKatex, remarkMath]}>
                     {problem?.description}

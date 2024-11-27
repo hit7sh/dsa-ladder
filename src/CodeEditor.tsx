@@ -132,9 +132,9 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
 
     return (
         <div>
-            <div className="flex flex-row-reverse justify-between">
+            <div className="flex flex-row-reverse justify-between h-[5vh]">
                 <div className='flex'>
-                    <Button disabled={runLoading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
+                    <Button disabled={runLoading} className="rounded border-solid border-4 h-[5vh]" onClick={runCode} variant="secondary">
                         {!runLoading && 'Run'}
                         {!runLoading ? (<TiMediaPlay />) : (
                             <RingLoader
@@ -146,7 +146,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                             />
                         )}
                     </Button>
-                    <Button disabled={runLoading} className="rounded border-solid border-4" onClick={submitCode} variant="secondary">
+                    <Button disabled={runLoading} className="rounded border-solid border-4 h-[5vh]" onClick={submitCode} variant="secondary">
                         {!submitLoading && 'Submit'}
                         {!submitLoading ? (<TiMediaPlay />) : (
                             <RingLoader
@@ -159,7 +159,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                         )}
                     </Button>
                 </div>
-                <div className='flex'>
+                <div className='flex h-[5vh]'>
                     <ThemeSelector setTheme={setTheme} />
                     <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 </div>
@@ -190,8 +190,8 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                             runtime_errors={runtime_errors}
                         />)
                 }
-                {(<Tabs value={currentTab} onValueChange={(x) => setCurrentTab(x)} className="bg-slate-500 pt-1">
-                    <TabsList className="bg-slate-200" >
+                {(<Tabs value={currentTab} onValueChange={(x) => setCurrentTab(x)} className="bg-slate-500 pt-1.5 mb-1 h-[7vh]">
+                    <TabsList className="bg-slate-200 h-[5vh]" >
                         <TabsTrigger value="Input">
                             Input
                         </TabsTrigger>

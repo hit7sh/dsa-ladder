@@ -21,7 +21,7 @@ const LanguageSelector = ({ language, onSelect }: Props) => {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="secondary">{language[0].toUpperCase() + language.slice(1)} <TiArrowSortedDown /></Button>
+                    <Button variant="secondary" className="h-[5vh] rounded border-solid border-4">{language[0].toUpperCase() + language.slice(1)} <TiArrowSortedDown /></Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>

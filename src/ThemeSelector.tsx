@@ -14,7 +14,7 @@ const ThemeSelector = ({ setTheme }: { setTheme: any }) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="secondary">Change Theme <TiArrowSortedDown /></Button>
+                <Button variant="secondary" className="h-[5vh] rounded border-solid border-4">Change Theme <TiArrowSortedDown /></Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuGroup>
