@@ -49,7 +49,7 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
                     })}
                 </div>
                 {
-                    !testCaseDetails?.input ? (<div>
+                    !!testCaseDetails?.input ? (<div>
                         <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Input</div>
                         <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.input}</div>
 
