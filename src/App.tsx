@@ -43,7 +43,8 @@ function App() {
         });
       })();
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
+
   if (isLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">

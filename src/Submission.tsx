@@ -20,10 +20,12 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
         verdict: string,
     }>(submitResponse?.[0]);
 
+    if (submitResponse.length === 0) {
+        return <div>Please Submit your code.</div>
+    }
     return (
         <>
             <div className="bg-blue-200 pl-2" style={{ whiteSpace: "pre-line" }}>
-                {submitResponse.length === 0 && 'Please Submit your code.'}
                 <link rel="icon" type="image/svg+xml" href="./src/assets/code.svg" />
                 <div className="flex flex-wrap">
                     {submitResponse?.map((resp, index) => {
@@ -53,7 +55,7 @@ const Submission = ({ submitResponse }: SubmissionPropTypes) => {
                     <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.expectedOutput}</div>
 
                     <div className="pl-2 mr-2 bg-slate-400 rounded-t-sm">Your Output: </div>
-                    <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.codeOutput}</div>
+                    <div className="pl-2 mr-2 bg-white mb-2 rounded-b-sm">{testCaseDetails?.codeOutput || <span className="text-red-600">{testCaseDetails?.verdict}</span>}</div>
                 </div>
             </div>
         </>
