@@ -78,7 +78,8 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
     const [inputText, setInputText] = useState('');
     const [submitResponse, setSubmitResponse] = useState([]);
     const [submitLoading, setSubmitLoading] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [currentTab, setCurrentTab] = useState('Output');
+    const [runLoading, setRunLoading] = useState(false);
 
     const onSelect = (language: string) => {
         setLanguage(language);
@@ -91,7 +92,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
             return;
         }
         try {
-            setLoading(true);
+            setRunLoading(true);
             setOutput('');
             const res = await axios.post(`${BACKEND_BASE_URL}/run`, {
                 code,
@@ -102,7 +103,8 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
             setOutput(res.data.output);
             setCompileErrors(res.data.compile_errors);
             setRuntimeErrors(res.data.runtime_errors);
-            setLoading(false);
+            setRunLoading(false);
+            setCurrentTab('Output');
         } catch (err) {
         }
     };
@@ -123,6 +125,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
 
             setSubmitResponse(res.data.response);
             setSubmitLoading(false);
+            setCurrentTab('Submission');
         } catch (err) {
         }
     }
@@ -131,9 +134,9 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
         <div>
             <div className="flex flex-row-reverse justify-between">
                 <div className='flex'>
-                    <Button disabled={loading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
-                        {!loading && 'Run'}
-                        {!loading ? (<TiMediaPlay />) : (
+                    <Button disabled={runLoading} className="rounded border-solid border-4" onClick={runCode} variant="secondary">
+                        {!runLoading && 'Run'}
+                        {!runLoading ? (<TiMediaPlay />) : (
                             <RingLoader
                                 color="green"
                                 loading={true}
@@ -143,7 +146,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                             />
                         )}
                     </Button>
-                    <Button disabled={loading} className="rounded border-solid border-4" onClick={submitCode} variant="secondary">
+                    <Button disabled={runLoading} className="rounded border-solid border-4" onClick={submitCode} variant="secondary">
                         {!submitLoading && 'Submit'}
                         {!submitLoading ? (<TiMediaPlay />) : (
                             <RingLoader
@@ -187,7 +190,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                             runtime_errors={runtime_errors}
                         />)
                 }
-                {(<Tabs defaultValue={'Output'} className="bg-slate-500 pt-1">
+                {(<Tabs value={currentTab} onValueChange={(x) => setCurrentTab(x)} className="bg-slate-500 pt-1">
                     <TabsList className="bg-slate-200" >
                         <TabsTrigger value="Input">
                             Input
@@ -203,7 +206,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle }: CodeEditorProps) => {
                         <Input inputText={inputText} setInputText={setInputText} />
                     </TabsContent>
                     <TabsContent value="Output">
-                        {loading ? (<center><RingLoader
+                        {runLoading ? (<center><RingLoader
                             color="white"
                             loading={true}
                             size={40}
