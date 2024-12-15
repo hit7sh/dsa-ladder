@@ -87,7 +87,7 @@ function App() {
 
             <SidebarTrigger />
             {problemsLoading && <div className="text-red-500">Backend is loading</div>}
-            <div className="font-serif">Dsa Ladder </div>
+            <div className="font-serif flex items-center justify-center">Dsa Ladder </div>
             {
               isAuthenticated ? (
                 <div className="pr-5">{user?.given_name || user?.name || user?.email}
@@ -99,7 +99,7 @@ function App() {
                 </div>
               ) : (
                 <button
-                  className="rounded h-[4vh] mr-2 text-sm flex bg-white pr-1 pl-1 font-medium"
+                  className="rounded mr-2 text-sm flex bg-gray-200 pr-1 pl-1 justify-center items-center font-medium"
                   onClick={() => loginWithRedirect({
                     authorizationParams: {
                       connection: 'google-oauth2'

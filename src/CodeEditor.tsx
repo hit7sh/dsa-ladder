@@ -175,7 +175,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle, userEmail, setSolvedProblem
                     <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 </div>
             </div>
-            <div className="h-[88vh] overflow-y-scroll w-full">
+            <div className="h-full overflow-y-scroll w-full">
                 <AceEditor
                     height="70vh"
                     width="100%"
@@ -201,8 +201,8 @@ const CodeEditor = ({ isAuthenticated, problemTitle, userEmail, setSolvedProblem
                             runtime_errors={runtime_errors}
                         />)
                 }
-                {(<Tabs value={currentTab} onValueChange={(x) => setCurrentTab(x)} className="bg-slate-500 pt-1.5 mb-1 h-[7vh]">
-                    <TabsList className="bg-slate-200 h-[5vh]" >
+                {(<Tabs value={currentTab} onValueChange={(x) => setCurrentTab(x)} className="bg-slate-500 pt-1.5 pb-1.5">
+                    <TabsList className="bg-slate-200" >
                         <TabsTrigger value="Input">
                             Input
                         </TabsTrigger>
