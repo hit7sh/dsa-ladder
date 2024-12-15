@@ -175,7 +175,7 @@ const CodeEditor = ({ isAuthenticated, problemTitle, userEmail, setSolvedProblem
                     <LanguageSelector language={language === 'c_cpp' ? 'C++' : language} onSelect={onSelect} />
                 </div>
             </div>
-            <div className="h-full overflow-y-scroll w-full">
+            <div className="h-[88vh] overflow-y-scroll w-full">
                 <AceEditor
                     height="70vh"
                     width="100%"
